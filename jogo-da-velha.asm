@@ -40,20 +40,12 @@ M=0
 M=0
 @KBD
 M=0
-
-(XTURN)
 @TURN
 M=1
+
+(XTURN)
 @TURNSX
 M=M+1
-@READ
-0;JMP
-
-(OTURN)
-@TURN
-M=-1
-@READ
-0;JMP
 
 (READ)
 @KBD // SE O VALOR LIDO FOR < 1 E > 9, LEIA DE NOVO
@@ -102,8 +94,8 @@ D;JGT // SENAO, VA PARA A PROXIMA JOGADA
 D=M
 @XTURN
 D;JGT
-@OTURN
-D;JLT
+@READ
+0;JMP
 
 // CONFIGURACOES DE VITORIA
 // 1, 2, 3
@@ -124,11 +116,11 @@ D=M
 D=D+M
 @R3
 D=D+M
-@3
+@3 // Se fosse 3, agora guardaria 0
 D=D-A
 @XWINS
 D;JEQ
-@6
+@6 // Se fosse -3, agora guardaria 0
 D=D+A
 @OWINS
 D;JEQ
@@ -237,6 +229,7 @@ D;JEQ
 D=D+A
 @OWINS
 D;JEQ
+
 @TURNSX
 D=M
 @5 // SE AS PARTIDAS ESGOTARAM, TERMINE COM EMPATE
